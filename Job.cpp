@@ -36,7 +36,7 @@ Job& Job:: operator=(const Job& a) {
 
 
 std::ostream& operator<<(std::ostream& out, const Job& a) {
-	return out << "作业" <<a.id<< "，进入时间为" << a.s << "，实施时间为" << a.t << "，优先级为" << a.p;
+	return out <<a.id<<" "<< a.s << " " << a.t <<" "<<a.w<< " " << a.p<<" ";
 }
 
 int Job::end_time()

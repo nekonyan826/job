@@ -23,10 +23,11 @@ void Platform::step(int now_time,std::vector<Job> now_jobs)
     if(this->state == IN)
     {
         // std::cout<<this->now_time<<" "<<this->working_job.w<<std::endl;
-        if(this->now_time>=this->working_job.end_time())
+        this->working_job.t--;
+        if(this->working_job.t<=0)
         {
             this->state = NOP;
-            std::cout<<this->working_job<<std::endl;
+            // std::cout<<this->working_job<<std::endl;
         }
     }
     else
@@ -47,4 +48,28 @@ bool Platform::check()
 {
     if(this->priority_queue.empty()) return false;
     return true;
+}
+
+void Platform::print()
+{
+    std::cout<<"-1 ";
+    std::cout<<this->now_time<<" ";
+    std::cout<<this->state<<" ";
+
+
+    // 等待时间
+    double avg_wait_time = this->priority_queue.avg_wait_time();
+    int min_wait_time = this->priority_queue.min_wait_time();
+    int max_wait_time = this->priority_queue.max_wait_time();
+    std::cout<<avg_wait_time<<" "<<min_wait_time<<" "<<max_wait_time<<" ";
+
+    // 队列大小
+    int size = this->priority_queue.size();
+    std::cout<<size<<" ";
+
+    // 正在执行哪一个
+    if(this->state == IN)
+    {
+        std::cout<<this->working_job;
+    }
 }

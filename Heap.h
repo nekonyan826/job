@@ -22,6 +22,10 @@ public:
     void pop();
     void push(const Job& it);
     int size();
+
+    double avg_wait_time();
+    int min_wait_time();
+    int max_wait_time();
 };
 
 
